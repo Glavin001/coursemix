@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
+    "start": "NODE_ENV=\"production\" slc run",
     "pretest": "jshint ."
   },
   "dependencies": {
