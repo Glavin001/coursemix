@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "NODE_ENV=\"production\" slc run",
+    "start": "NODE_ENV=\"production\" ./node_modules/strongloop/bin/slc run",
     "pretest": "jshint ."
   },
   "dependencies": {
@@ -12,7 +12,8 @@
     "loopback": "^2.8.0",
     "loopback-boot": "^2.6.5",
     "loopback-datasource-juggler": "^2.7.0",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "strongloop": "^3.0.4"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
