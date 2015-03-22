@@ -1,4 +1,14 @@
 var CourseDownloader = require('../uniapi/course_downloader');
+var watson = require('watson-developer-cloud');
+var TradeoffAnalytics = watson.tradeoff_analytics;
+
+var credentials = {
+    "version": "v1",
+    "url": "https://gateway.watsonplatform.net/tradeoff-analytics-beta/api",
+    "username": "a174c4b0-a409-429b-b435-43c5243beb7c",
+    "password": "XYCOl9iWSr5o"
+};
+var tradeoffAnalytics = new TradeoffAnalytics(credentials);
 
 module.exports = function(Course) {
 
@@ -54,7 +64,7 @@ module.exports = function(Course) {
         var dataSource = Course.getDataSource();
         var connector = dataSource.connector;
         var collection = connector.collection('course');
-        
+
         downloader.downloadTerm(term, function(err, allCourses) {
 
             if (err) {
@@ -112,6 +122,42 @@ module.exports = function(Course) {
             returns: {
                 arg: 'terms',
                 type: 'array'
+            }
+        }
+    );
+
+
+    Course.dilemmas = function(body, cb) {
+        console.log(body);
+
+        tradeoffAnalytics.dilemmas(body, function(err, dilemmas) {
+            if (err) {
+                return cb(new Error(
+                        'Error processing the request.'),
+                    dilemmas);
+            } else {
+                return cb(null, dilemmas);
+            }
+        });
+
+    };
+
+    Course.remoteMethod(
+        'dilemmas', {
+            http: {
+                path: '/dilemmas',
+                verb: 'post'
+            },
+            accepts: {
+                arg: 'data',
+                type: 'object',
+                http: {
+                    source: 'body'
+                }
+            },
+            returns: {
+                type: 'object',
+                root: true
             }
         }
     );

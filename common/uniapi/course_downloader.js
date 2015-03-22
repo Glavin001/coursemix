@@ -133,7 +133,7 @@ var CourseDownloader = module.exports = (function() {
         var r = /(.*)\s?([0-9]*).*/;
         var loc = row.location;
         var ls = loc.match(r);
-        row.Bldg_code = ls[1];
+        row.building_name = ls[1];
         delete row.location;
         // room
         row.room_code = ls[2];
