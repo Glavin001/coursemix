@@ -1,15 +1,20 @@
 var mongoUrl = "mongodb://localhost/coursemix";
+sendGridUser = "MhG32AG0WA";
+sendGridKey = "tuvyJCt6tw";
 
 if (process.env.VCAP_SERVICES) {
-  // VCAP_SERVICES contains all the credentials of services bound to
-  // this application. For details of its content, please refer to
-  // the document or sample of each service.
-  var services = JSON.parse(process.env.VCAP_SERVICES || "{}");
-  // TODO: Get service credentials and communicate with bluemix services.
+    // VCAP_SERVICES contains all the credentials of services bound to
+    // this application. For details of its content, please refer to
+    // the document or sample of each service.
+    var services = JSON.parse(process.env.VCAP_SERVICES || "{}");
+    // TODO: Get service credentials and communicate with bluemix services.
 
-  var env = JSON.parse(process.env.VCAP_SERVICES);
-  
-  mongoUrl = env['mongodb-2.4'][0].credentials.url;
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+
+    mongoUrl = env['mongodb-2.4'][0].credentials.url;
+
+    sendGridUser = env['sendgrid'][0].credentials.username;
+    sendGridKey = env['sendgrid'][0].credentials.password;
 
 }
 
@@ -34,9 +39,14 @@ if (process.env.VCAP_SERVICES) {
 */
 
 module.exports = {
-  "db": {
-    "name": "db",
-    "connector": "mongodb",
-    "url": mongoUrl
-  }
+    "db": {
+        "name": "db",
+        "connector": "mongodb",
+        "url": mongoUrl
+    },
+    "sendgrid": {
+        "connector": "loopback-connector-sendgrid",
+        "api_user": sendGridUser,
+        "api_key": sendGridKey
+    }
 };
