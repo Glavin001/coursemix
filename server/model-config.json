@@ -25,5 +25,9 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "course": {
+    "dataSource": "db",
+    "public": true
   }
 }

@@ -1,4 +1,4 @@
-var mongoUrl = "mongodb://localhost";
+var mongoUrl = "mongodb://localhost/coursemix";
 
 if (process.env.VCAP_SERVICES) {
   // VCAP_SERVICES contains all the credentials of services bound to

@@ -1,0 +1,95 @@
+{
+  "name": "course",
+  "plural": "courses",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "crn": {
+      "type": "number",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "schedule_type": {
+      "type": "string",
+      "required": true
+    },
+    "subject_id": {
+      "type": "string",
+      "required": true
+    },
+    "course_id": {
+      "type": "number",
+      "required": true
+    },
+    "section": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "start_date": {
+      "type": "date",
+      "required": true
+    },
+    "end_date": {
+      "type": "date",
+      "required": true
+    },
+    "begin_time": {
+      "type": "object",
+      "required": true
+    },
+    "end_time": {
+      "type": "object",
+      "required": true
+    },
+    "on_monday": {
+      "type": "boolean",
+      "required": true
+    },
+    "on_tuesday": {
+      "type": "boolean",
+      "required": true
+    },
+    "on_wednesday": {
+      "type": "boolean",
+      "required": true
+    },
+    "on_thursday": {
+      "type": "boolean",
+      "required": true
+    },
+    "on_friday": {
+      "type": "boolean",
+      "required": true
+    },
+    "on_saturday": {
+      "type": "boolean",
+      "required": true
+    },
+    "on_sunday": {
+      "type": "boolean",
+      "required": true
+    },
+    "building_name": {
+      "type": "string",
+      "required": true
+    },
+    "room_code": {
+      "type": "string"
+    },
+    "instructor": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
