@@ -1,10 +1,15 @@
 {
-  "test-db": {
-    "name": "test-db",
-    "connector": "memory"
-  },
-  "db": {
-    "name": "db",
-    "connector": "mongodb"
-  }
+    "test-db": {
+        "name": "test-db",
+        "connector": "memory"
+    },
+    "db": {
+        "name": "db",
+        "connector": "mongodb"
+    },
+    "sendgrid": {
+        "connector": "loopback-connector-sendgrid",
+        "api_user": "MhG32AG0WA",
+        "api_key": "tuvyJCt6tw"
+    }
 }
