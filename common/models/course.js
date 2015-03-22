@@ -126,15 +126,12 @@ module.exports = function(Course) {
         }
     );
 
-
     Course.dilemmas = function(body, cb) {
-        console.log(body);
+        // console.log(body);
 
         tradeoffAnalytics.dilemmas(body, function(err, dilemmas) {
             if (err) {
-                return cb(new Error(
-                        'Error processing the request.'),
-                    dilemmas);
+                return cb(err);
             } else {
                 return cb(null, dilemmas);
             }
@@ -162,23 +159,36 @@ module.exports = function(Course) {
         }
     );
 
-    Course.subjects = function(req, res) {
-        sails.models.courses.native(function(err, collection) {
+    Course.subjects = function(cb) {
 
-            collection.aggregate({
-                "$group": {
-                    "_id": "subjects",
-                    "total": {
-                        "$addToSet": "$Subj_code"
-                    }
+        var dataSource = Course.getDataSource();
+        var connector = dataSource.connector;
+        var collection = connector.collection('course');
+
+        collection.aggregate({
+            "$group": {
+                "_id": "subjects",
+                "list": {
+                    "$addToSet": "$subject_id"
                 }
-            }, function(err, results) {
-
-                return res.json(results[0].total);
-
-            });
-
+            }
+        }, function(err, results) {
+            return cb(err, results[0].list);
         });
     };
+
+
+    Course.remoteMethod(
+        'subjects', {
+            http: {
+                path: '/subjects',
+                verb: 'get'
+            },
+            returns: {
+                root: true,
+                type: 'array'
+            }
+        }
+    );
 
 };

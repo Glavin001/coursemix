@@ -10,31 +10,6 @@ var host = (process.env.VCAP_APP_HOST || 'localhost');
 var port = (process.env.VCAP_APP_PORT || 3000);
 
 module.exports = {
-  "restApiRoot": "/api",
   "host": host,
-  "port": port,
-  "remoting": {
-    "context": {
-      "enableHttpContext": false
-    },
-    "rest": {
-      "normalizeHttpPath": false,
-      "xml": false
-    },
-    "json": {
-      "strict": false,
-      "limit": "100kb"
-    },
-    "urlencoded": {
-      "extended": true,
-      "limit": "100kb"
-    },
-    "cors": {
-      "origin": true,
-      "credentials": true
-    },
-    "errorHandler": {
-      "disableStackTrace": false
-    }
-  }
+  "port": port
 };
