@@ -8,11 +8,8 @@ if (process.env.VCAP_SERVICES) {
   // TODO: Get service credentials and communicate with bluemix services.
 
   var env = JSON.parse(process.env.VCAP_SERVICES);
-  if (env['mongodb-2.4']) {
-    var mongo = env['mongodb-2.4'][0]['credentials'];
-  }
-
-  mongoUrl = services['mongodb-2.4'].credentials.url;
+  
+  mongoUrl = env['mongodb-2.4'][0].credentials.url;
 
 }
 
